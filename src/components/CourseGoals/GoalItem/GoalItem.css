@@ -1,0 +1,28 @@
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: no-wrap;
+}
+
+.goal-item {
+  margin: 1rem 0;
+  background: #075e86;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+}  
+
+.right-delete-icon {
+  padding: 0.2rem;
+  margin-left: 2rem
+}
+
+.right-delete-icon:hover,
+.right-delete-icon:active {
+  color: black;
+  cursor: pointer;
+}
+
+
