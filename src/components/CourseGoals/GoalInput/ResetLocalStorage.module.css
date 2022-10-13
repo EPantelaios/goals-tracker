@@ -1,0 +1,16 @@
+.formButtons {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  
+}
+
+.formButtons .addButton {
+  margin: auto;
+  margin-bottom: 0.5rem;
+}
+
+.formButtons .resetButton {
+  margin: auto;
+  margin-bottom: 0.5rem;
+}
