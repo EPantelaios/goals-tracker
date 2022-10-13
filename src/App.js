@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import uuidv4 from 'uuid/v4';
 
-import CourseInput from './components/CourseGoals/CourseInput/CourseInput';
-import CourseGoalList from './components/CourseGoals/CourseGoalList/CourseGoalList';
+import CourseInput from './components/CourseGoals/GoalInput/GoalInput';
+import CourseGoalList from './components/CourseGoals/GoalList/GoalList';
 
+import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 
 const App = () => {
   const [courseGoals, setCourseGoals] = useState([
-    { text: 'Do all homework', id: uuidv4() },
+    { text: 'Do all exercises', id: uuidv4() },
     { text: 'Finish the assignment', id: uuidv4() },
-    { text: 'Refactoring code for this repo.', id: uuidv4() },
+    { text: 'Refactoring code for this repo', id: uuidv4() },
   ]);
 
   const addGoalHandler = (enteredText) => {
@@ -31,7 +31,7 @@ const App = () => {
   return (
     <>
       <section id="goal-form">
-        <CourseInput props={addGoalHandler} />
+        <CourseInput onAddItem={addGoalHandler} />
       </section>
       <section id="goals-list">
         {courseGoals.length > 0 ? (
@@ -40,7 +40,9 @@ const App = () => {
             onDeleteItem={deleteItemHandler}
           />
         ) : (
-          <p style={{ textAlign: 'center' }}>No goals found. Maybe add one?</p>
+          <p style={{ textAlign: 'center', fontWeight: '500' }}>
+            No goals found. Maybe add one?
+          </p>
         )}
       </section>
     </>
