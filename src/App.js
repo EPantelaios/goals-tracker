@@ -7,16 +7,30 @@ import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 
 const App = () => {
-  const [courseGoals, setCourseGoals] = useState([
+  const itemsArray = [
     { text: 'Do all exercises', id: uuidv4() },
     { text: 'Finish the assignment', id: uuidv4() },
     { text: 'Refactoring code for this repo', id: uuidv4() },
-  ]);
+  ];
+
+  const setAndRetriveLocalStorage = (itemsArray) => {
+    const items = localStorage.getItem('items');
+    if (items == null) {
+      localStorage.setItem('items', JSON.stringify(itemsArray));
+    }
+    return JSON.parse(localStorage.getItem('items'));
+  };
+
+  const [courseGoals, setCourseGoals] = useState(() =>
+    setAndRetriveLocalStorage(itemsArray)
+  );
 
   const addGoalHandler = (enteredText) => {
     setCourseGoals((prevGoals) => {
       const updatedGoals = [...prevGoals];
       updatedGoals.unshift({ text: enteredText, id: uuidv4() });
+      //update local storage with new item
+      localStorage.setItem('items', JSON.stringify(updatedGoals));
       return updatedGoals;
     });
   };
@@ -24,17 +38,27 @@ const App = () => {
   const deleteItemHandler = (goalId) => {
     setCourseGoals((prevGoals) => {
       const updatedGoals = prevGoals.filter((goal) => goal.id !== goalId);
+      //update the local storage by removing the deleted item
+      localStorage.setItem('items', JSON.stringify(updatedGoals));
       return updatedGoals;
     });
+  };
+
+  const resetItemsHandler = () => {
+    localStorage.setItem('items', JSON.stringify([]));
+    setCourseGoals([]);
   };
 
   return (
     <>
       <section id="goal-form">
-        <CourseInput onAddItem={addGoalHandler} />
+        <CourseInput
+          onAddItem={addGoalHandler}
+          onResetItems={resetItemsHandler}
+        />
       </section>
       <section id="goals-list">
-        {courseGoals.length > 0 ? (
+        {courseGoals?.length > 0 ? (
           <CourseGoalList
             items={courseGoals}
             onDeleteItem={deleteItemHandler}
