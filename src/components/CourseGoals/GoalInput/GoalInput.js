@@ -32,6 +32,7 @@ const CourseInput = (props) => {
   };
 
   const resetItemsHandler = () => {
+    setEnteredValue('');
     props.onResetItems();
   };
 
