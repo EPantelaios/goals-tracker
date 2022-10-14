@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import Button from '../../UI/Button/Button';
 import ResetLocalStorage from './ResetLocalStorage';
+import ErrorModal from '../../UI/Modal/ErrorModal';
 import styles from './GoalInput.module.css';
 import styledButtons from './ResetLocalStorage.module.css';
 
@@ -10,6 +11,7 @@ const CourseInput = (props) => {
   const [enteredValue, setEnteredValue] = useState('');
   const [isValid, setIsValid] = useState(true);
   const [maxLengthInputText, setMaxLengthInputText] = useState(maxCharacters);
+  const [error, setError] = useState();
 
   const inputChangeHandler = (event) => {
     if (event.target.value.trim().length) {
@@ -23,6 +25,10 @@ const CourseInput = (props) => {
   const formSubmitHandler = (event) => {
     event.preventDefault();
     if (!enteredValue.trim().length) {
+      setError({
+        title: 'Invalid input',
+        message: 'Non-empty values are allowed',
+      });
       setIsValid(false);
       return;
     }
@@ -38,8 +44,13 @@ const CourseInput = (props) => {
 
   const errorFormMessage = 'Invalid input';
 
+  const errorHandler = () => {
+    setError(null);
+  };
+
   return (
     <>
+      {error && <ErrorModal onConfirm={errorHandler} {...error} />}
       <form onSubmit={formSubmitHandler}>
         <div
           className={`${styles['form-control']} ${!isValid && styles.invalid}`}
