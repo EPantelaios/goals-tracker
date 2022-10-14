@@ -62,15 +62,20 @@ const CourseInput = (props) => {
             {maxLengthInputText}
           </div>
         </div>
-        <div className={`${styledButtons.formButtons}`}>
-          <div className={`${styledButtons.addButton}`}>
-            <Button type="submit" props={props}>
-              Add Goal
-            </Button>
-          </div>
-          <div className={`${styledButtons.resetButton}`}>
-            <ResetLocalStorage props={props} onResetItems={resetItemsHandler} />
-          </div>
+        <div className={styledButtons.formButtons}>
+          <Button
+            type="submit"
+            props={props}
+            className={styledButtons.addButton}
+          >
+            Add Goal
+          </Button>
+          <ResetLocalStorage
+            type="button"
+            props={props}
+            onResetItems={resetItemsHandler}
+            className={styledButtons.resetButton}
+          />
         </div>
       </form>
     </>
