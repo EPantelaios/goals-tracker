@@ -33,8 +33,8 @@
 
 .resetButton:hover,
 .resetButton:active {
-  background: #075e86;
-  border-color: #075e86;
-  color: white;
+  background: #0a7dc0;                  
+  border-color: #0a7dc0;
+  color: black;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.26);
 }
