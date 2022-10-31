@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-
-import CourseInput from './components/CourseGoals/GoalInput/GoalInput';
-import CourseGoalList from './components/CourseGoals/GoalList/GoalList';
+import { useState } from 'react';
 
 import { v4 as uuidv4 } from 'uuid';
+
+import CourseInput from './components/CourseGoals/GoalInput/GoalInput';
+import GoalList from './components/CourseGoals/GoalList/GoalList';
 import './App.css';
 
 const App = () => {
@@ -13,7 +13,9 @@ const App = () => {
     { text: 'Refactoring code for this repo', id: uuidv4() },
   ];
 
-  const setAndRetriveLocalStorage = (itemsArray) => {
+  const setAndRetriveLocalStorage = (
+    itemsArray: { text: string; id: string }[]
+  ) => {
     const items = localStorage.getItem('items');
     if (items == null) {
       localStorage.setItem('items', JSON.stringify(itemsArray));
@@ -35,7 +37,7 @@ const App = () => {
     });
   };
 
-  const deleteItemHandler = (goalId) => {
+  const deleteItemHandler = (goalId: string) => {
     setCourseGoals((prevGoals) => {
       const updatedGoals = prevGoals.filter((goal) => goal.id !== goalId);
       //update the local storage by removing the deleted item
@@ -59,10 +61,7 @@ const App = () => {
       </section>
       <section id="goals-list">
         {courseGoals?.length > 0 ? (
-          <CourseGoalList
-            items={courseGoals}
-            onDeleteItem={deleteItemHandler}
-          />
+          <GoalList items={courseGoals} onDeleteItem={deleteItemHandler} />
         ) : (
           <p style={{ textAlign: 'center', fontWeight: '500' }}>
             No goals found. Maybe add one?

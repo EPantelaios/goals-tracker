@@ -1,6 +1,12 @@
 import Button from '../../UI/Button/Button';
 
-const CourseInput = (props) => {
+type Props = {
+  type: 'button' | 'submit' | 'reset';
+  className: string;
+  onResetItems: () => void;
+};
+
+const CourseInput = (props: Props) => {
   const resetItemsHandler = () => {
     localStorage.clear();
     props.onResetItems();
@@ -11,7 +17,6 @@ const CourseInput = (props) => {
       className={props.className}
       type={props.type}
       onClick={resetItemsHandler}
-      props={props}
     >
       Reset All
     </Button>

@@ -1,23 +1,29 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import Button from '../../UI/Button/Button';
-import ResetLocalStorage from './ResetLocalStorage';
 import ErrorModal from '../../UI/Modal/ErrorModal';
 import styles from './GoalInput.module.css';
+import ResetLocalStorage from './ResetLocalStorage';
 import styledButtons from './ResetLocalStorage.module.css';
 
-const CourseInput = (props) => {
+type Props = {
+  // eslint-disable-next-line no-unused-vars
+  onAddItem: (value: string) => void;
+  onResetItems: () => void;
+};
+
+const CourseInput = (props: Props) => {
   const maxCharacters = 200;
-  const [enteredValue, setEnteredValue] = useState('');
-  const [isValid, setIsValid] = useState(true);
-  const [maxLengthInputText, setMaxLengthInputText] = useState(maxCharacters);
-  const [error, setError] = useState();
+  const [enteredValue, setEnteredValue] = useState<string>('');
+  const [isValid, setIsValid] = useState<boolean>(true);
+  const [maxLengthInputText, setMaxLengthInputText] =
+    useState<number>(maxCharacters);
+  const [error, setError] = useState<{ title: string; message: string }>();
 
   const inputChangeHandler = (event) => {
     if (event.target.value.trim().length) {
       setIsValid(true);
     }
-
     setEnteredValue(event.target.value);
     setMaxLengthInputText(maxCharacters - event.target.value.length);
   };
@@ -62,29 +68,24 @@ const CourseInput = (props) => {
           <input
             type="text"
             placeholder="Enter your next goal..."
-            maxLength="200"
+            maxLength={200}
             value={enteredValue}
             onChange={inputChangeHandler}
             onFocus={() => setIsValid(true)}
           />
           <div
-            className={`${styles['max-length-text']}`}
+            className={styles['max-length-text']}
             title="The allowed limit is up to 200 characters"
           >
             {maxLengthInputText}
           </div>
         </div>
         <div className={styledButtons.formButtons}>
-          <Button
-            type="submit"
-            props={props}
-            className={styledButtons.addButton}
-          >
+          <Button type="submit" className={styledButtons.addButton}>
             Add Goal
           </Button>
           <ResetLocalStorage
             type="button"
-            props={props}
             onResetItems={resetItemsHandler}
             className={styledButtons.resetButton}
           />

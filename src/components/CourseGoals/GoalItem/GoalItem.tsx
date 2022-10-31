@@ -1,10 +1,15 @@
-import React from 'react';
-
 import { RiDeleteBinLine } from 'react-icons/ri';
 
 import './GoalItem.css';
 
-const CourseGoalItem = (props) => {
+type Props = {
+  id: string;
+  // eslint-disable-next-line no-unused-vars
+  onDelete: (id: string) => void;
+  children: React.ReactNode;
+};
+
+const CourseGoalItem = (props: Props) => {
   const deleteHandler = () => {
     props.onDelete(props.id);
   };

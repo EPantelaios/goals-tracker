@@ -7,11 +7,9 @@
   border-radius: 12px;
 }
 
-
 #goals-list {
   width: 30rem;
   max-width: 90%;
   margin: auto;
   overflow-wrap: anywhere;
 }
-

@@ -1,10 +1,15 @@
-import React from 'react';
-
-import Card from '../Card/Card';
 import Button from '../Button/Button';
+import Card from '../Card/Card';
 import classes from './ErrorModal.module.css';
 
-const ErrorModal = (props) => {
+type Props = {
+  title: string;
+  message: string;
+  onConfirm: () => void;
+  buttonName?: string;
+};
+
+const ErrorModal = (props: Props) => {
   return (
     <>
       <div className={classes.backdrop} onClick={props.onConfirm} />
