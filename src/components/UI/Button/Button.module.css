@@ -22,3 +22,16 @@
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.26);
   color: black;
 }
+
+.buttonNotHover{
+  color: white;
+  background: #075e86;
+
+}
+
+.buttonNotHover:hover,
+.buttonNotHover:active {
+  color: white;
+  background: #075e86;
+
+}
