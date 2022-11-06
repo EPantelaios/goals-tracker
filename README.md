@@ -1,3 +1,5 @@
+#### The project is hosted [here](https://goals-tracker.epantelaios.vercel.app/)
+
 #### `Instructions:`
 
 - #### `npm install`
